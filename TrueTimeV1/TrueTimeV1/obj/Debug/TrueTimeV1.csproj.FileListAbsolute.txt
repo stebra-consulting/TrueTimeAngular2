@@ -1,0 +1,3 @@
+D:\TrueTime\TrueTimeV1\TrueTimeV1\bin\Debug\TrueTimeV1.pdb
+D:\TrueTime\TrueTimeV1\TrueTimeV1\obj\Debug\TrueTimeV1.dll
+D:\TrueTime\TrueTimeV1\TrueTimeV1\obj\Debug\TrueTimeV1.pdb

@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package dslVersion="1.0.0.0" 
+        Id="84a08b6a-1551-4565-b067-048cf70a72a3" 
+        solutionId="84a08b6a-1551-4565-b067-048cf70a72a3" 
+        xmlns="http://schemas.microsoft.com/VisualStudio/2008/SharePointTools/PackageModel" 
+        name="TrueTimeV1"
+        sharePointProductVersion="16.0">
+  <features>
+        <featureReference itemId="54ea0a8f-ac9f-4a0b-a5d2-2e7ce3671c5a" />
+  </features>
+</package>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+  <Module Name="RootModule">
+    <File Path="tsconfig.json" Url="tsconfig.json" ReplaceContent="TRUE" />
+    <File Path=".bin\node.cmd" Url=".bin/node.cmd" ReplaceContent="TRUE" />
+  </Module>
+</Elements>
