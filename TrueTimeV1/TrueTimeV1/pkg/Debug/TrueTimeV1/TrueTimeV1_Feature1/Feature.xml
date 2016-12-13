@@ -5,10 +5,6 @@
     <ElementFile Location="Pages\Default.aspx" />
     <ElementManifest Location="Scripts\Elements.xml" />
     <ElementFile Location="Scripts\App.js" />
-    <ElementFile Location="Scripts\jquery-1.9.1.min.map" />
-    <ElementFile Location="Scripts\jquery-1.9.1.min.js" />
-    <ElementFile Location="Scripts\jquery-1.9.1.js" />
-    <ElementFile Location="Scripts\jquery-1.9.1.intellisense.js" />
     <ElementManifest Location="Content\Elements.xml" />
     <ElementFile Location="Content\App.css" />
     <ElementManifest Location="Images\Elements.xml" />
