@@ -10,10 +10,6 @@ function tidApp() {
     var user = context.get_web().get_currentUser();
     console.log("user", user);
 
-
-
-
-    // var web = context.get_web();
     context.load(user);
     context.executeQueryAsync(Function.createDelegate(this, onSuccess),
             Function.createDelegate(this, onFail));
@@ -76,13 +72,14 @@ function successHandler(data) {
     $(results).each(function () {
 
         items.push('<li>' +
-                        // this.Title +
+                      
                         "<a href=\"" + hostweburl + "/Lists/Tidsrapport/DispForm.aspx?ID=" + this.ID +
-                        "\" target=\"_blank\">" + this.Project + "</a>" + "</br>" + "<p>" + this.Created +"</p>" +
+                        "\" target=\"_blank\">" + this.Project.Name + "</a>"  + "</br>" + "<p>" + this.Created +"</p>" +
                    '</li>');
     });
     console.log(this.Project);
     console.log(this.ID);
+    console.log(this.Created);
 
     items.push("</ul");
     $("#listResult").html(items.join(''))
@@ -106,3 +103,29 @@ function getQueryStringParameter(paramToRetrieve) {
             return singleParam[1];   
     }   
 }
+
+function execCrossDomainRequestTest() {
+    var listGuid = '99471df6-0ae8-46c8-9fa6-7bfb3e4bfd33';
+
+
+    executor.executeAsync(
+     {
+
+         url: hostweburl + '/_api/Web/Lists(guid' + listguid + ')/roleassignments/GetByPrincipalId(' + userId + ')/RoleDefinitionBindings' + hostweburl + "'",
+
+         method: "GET",
+         headers: { "Accept": "application/json; odata=verbose" },
+         success: successHandler,
+         error: errorHandler
+
+     }
+
+    );
+    console.log(listGuid);
+}
+    //var listGuid = '99471df6-0ae8-46c8-9fa6-7bfb3e4bfd33';
+
+    //var url = hostweburl + '/_api/Web/Lists(guid' + listguid + ')/roleassignments/GetByPrincipalId(' + userId + ')/RoleDefinitionBindings'
+    //https://sbra.sharepoint.com/sites/SD1/_api/Web/Lists(guid'99471df6-0ae8-46c8-9fa6-7bfb3e4bfd33')/roleassignments/GetByPrincipalId(12)/RoleDefinitionBindings
+
+    //https://stebra.sharepoint.com/sites/SD1/_api/Web/Lists(guid'99471df6-0ae8-46c8-9fa6-7bfb3e4bfd33')/roleassignments/GetByPrincipalId(12)/RoleDefinitionBindings
