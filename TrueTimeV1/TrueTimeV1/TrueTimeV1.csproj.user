@@ -2,14 +2,14 @@
 <Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <SharePointSiteUrl>https://stebra.sharepoint.com/sites/sd1/</SharePointSiteUrl>
-    <ProjectView>ShowAllFiles</ProjectView>
+    <ProjectView>ProjectFiles</ProjectView>
   </PropertyGroup>
   <ProjectExtensions>
     <VisualStudio>
       <FlavorProperties GUID="{C1CDDADD-2546-481F-9697-4EA41081F2FC}">
         <ProjectStore>
-          <AppInstancePackageModifiedTime>2016-12-13T10:12:38.2532114Z</AppInstancePackageModifiedTime>
-          <AppInstanceId>2a613d77-8e9e-4269-9b20-30e13fb6b25f</AppInstanceId>
+          <AppInstancePackageModifiedTime>2016-12-14T08:17:46.5728787Z</AppInstancePackageModifiedTime>
+          <AppInstanceId>c969253a-2690-47f9-87f8-0af3ba4d4a63</AppInstanceId>
         </ProjectStore>
       </FlavorProperties>
     </VisualStudio>
