@@ -25,6 +25,7 @@
 
 //}
 
+var globalVarData;
 var hostweburl;   
 var appweburl;   
 
@@ -135,14 +136,15 @@ function getCurrentUserId(){
 }
 
 function execCrossDomainRequestTest(userId) {
-    var listGuid = "'99471df6-0ae8-46c8-9fa6-7bfb3e4bfd33'";
+    var listGuid = "99471df6-0ae8-46c8-9fa6-7bfb3e4bfd33";
 
     //var url = hostweburl + '/_api/Web/Lists(guid' + listGuid + ')/roleassignments/c/RoleDefinitionBindings';
-    var url = appweburl + "/_api/SP.AppContextSite(@target)/Web/Lists(guid'99471df6-0ae8-46c8-9fa6-7bfb3e4bfd33')/roleassignments/GetByPrincipalId('" + userId + "')/RoleDefinitionBindings?@target='" + hostweburl + "'";
+    var url = appweburl + "/_api/SP.AppContextSite(@target)/Web/Lists(guid'" + listGuid + "')/roleassignments/GetByPrincipalId('" + userId + "')/RoleDefinitionBindings?@target='" + hostweburl + "'";
 
     var pause = "pause";
 
     var executor = new SP.RequestExecutor(appweburl);
+    //var jsonData = JSON.parse(this.globalVarData.body)
 
     executor.executeAsync(
      {
@@ -151,8 +153,11 @@ function execCrossDomainRequestTest(userId) {
         
          method: "GET",
          headers: { "Accept": "application/json; odata=verbose" },
-         success: function (data) { console.log("success", data) },
-         error: function (data) { console.log("success", data) }
+         success: function (data) {
+             console.log("success", data);
+             globalVarData = data;
+         },
+         error: function (data) { console.log("error", data) }
 
      }
 
