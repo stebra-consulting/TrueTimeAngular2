@@ -1,53 +1,62 @@
 ﻿
 "use strict";
-ExecuteOrDelayUntilScriptLoaded(tidApp, "sp.js");
-
-function tidApp() {
 
 
+//function tidApp() {
 
-    var context = SP.ClientContext.get_current();
-    var user = context.get_web().get_currentUser();
-    console.log("user", user);
 
-    context.load(user);
-    context.executeQueryAsync(Function.createDelegate(this, onSuccess),
-            Function.createDelegate(this, onFail));
 
-    function onSuccess(sender, args) {
-        alert('user title:' + user.get_title() + '\n ID:' + user.get_id());
-        var userId = user.get_id();
-        console.log("ID", userId);
-    }
-    function onFail(sender, args) {
-        alert('failed to get list. Error:' + args.get_message());
-    }
+//    var context = SP.ClientContext.get_current();
+//    var user = context.get_web().get_currentUser();
+//    console.log("user", user);
 
-}
+//    context.load(user);
+//    context.executeQueryAsync(Function.createDelegate(this, onSuccess),
+//            Function.createDelegate(this, onFail));
+
+//    function onSuccess(sender, args) {
+//        alert('user title:' + user.get_title() + '\n ID:' + user.get_id());
+//        var userId = user.get_id();
+//        console.log("ID", userId);
+//    }
+//    function onFail(sender, args) {
+//        alert('failed to get list. Error:' + args.get_message());
+//    }
+
+//}
 
 var hostweburl;   
 var appweburl;   
 
 $(document).ready(function () {  
-            
-    hostweburl =   
-        decodeURIComponent(   
-            getQueryStringParameter("SPHostUrl"));   
-    appweburl =   
-        decodeURIComponent(   
-            getQueryStringParameter("SPAppWebUrl"));     
-    var scriptbase = hostweburl + "/_layouts/15/";    
+ 
 
-    $.getScript(scriptbase + "SP.RequestExecutor.js", execCrossDomainRequest);  
+    ExecuteOrDelayUntilScriptLoaded(loadRequestExecutor, "sp.js");
+
+    
+   
 });  
-              
+  
+function loadRequestExecutor() {
+
+    hostweburl =
+   decodeURIComponent(
+       getQueryStringParameter("SPHostUrl"));
+    appweburl =
+        decodeURIComponent(
+            getQueryStringParameter("SPAppWebUrl"));
+    var scriptbase = hostweburl + "/_layouts/15/";
+
+    $.getScript(scriptbase + "SP.RequestExecutor.js", getCurrentUserId);
+   
+}
  
 
 function execCrossDomainRequest() {  
  
     var executor = new SP.RequestExecutor(appweburl);             
     var listName = "Tidsrapport"
- 
+    
     executor.executeAsync(  
         {  
                   
@@ -103,23 +112,54 @@ function getQueryStringParameter(paramToRetrieve) {
             return singleParam[1];   
     }   
 }
+function getCurrentUserId(){
 
-function execCrossDomainRequestTest() {
-    var listGuid = '99471df6-0ae8-46c8-9fa6-7bfb3e4bfd33';
+    var context = SP.ClientContext.get_current();
+    var user = context.get_web().get_currentUser();
+    console.log("user", user);
 
+    context.load(user);
+    context.executeQueryAsync(Function.createDelegate(this, onSuccess),
+            Function.createDelegate(this, onFail));
+
+    function onSuccess(sender, args) {
+        alert('user title:' + user.get_title() + '\n ID:' + user.get_id());
+        var userId = user.get_id();
+        console.log("ID", userId);
+        execCrossDomainRequestTest(userId);
+    }
+    function onFail(sender, args) {
+        alert('failed to get list. Error:' + args.get_message());
+    }
+
+}
+
+function execCrossDomainRequestTest(userId) {
+    var listGuid = "'99471df6-0ae8-46c8-9fa6-7bfb3e4bfd33'";
+
+    //var url = hostweburl + '/_api/Web/Lists(guid' + listGuid + ')/roleassignments/c/RoleDefinitionBindings';
+    var url = appweburl + "/_api/SP.AppContextSite(@target)/Web/Lists(guid'99471df6-0ae8-46c8-9fa6-7bfb3e4bfd33')/roleassignments/GetByPrincipalId('" + userId + "')/RoleDefinitionBindings?@target='" + hostweburl + "'";
+
+    var pause = "pause";
+
+    var executor = new SP.RequestExecutor(appweburl);
 
     executor.executeAsync(
      {
 
-         url: hostweburl + '/_api/Web/Lists(guid' + listguid + ')/roleassignments/GetByPrincipalId(' + userId + ')/RoleDefinitionBindings' + hostweburl + "'",
-
+         url: url,
+        
          method: "GET",
          headers: { "Accept": "application/json; odata=verbose" },
-         success: successHandler,
-         error: errorHandler
+         success: function (data) { console.log("success", data) },
+         error: function (data) { console.log("success", data) }
 
      }
 
+     
+
+
+    
     );
     console.log(listGuid);
 }

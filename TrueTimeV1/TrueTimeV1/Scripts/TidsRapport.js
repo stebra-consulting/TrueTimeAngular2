@@ -29,7 +29,8 @@ var hostweburl;
 var appweburl;   
 
 $(document).ready(function () {  
-    
+ 
+
     ExecuteOrDelayUntilScriptLoaded(loadRequestExecutor, "sp.js");
 
     
@@ -47,6 +48,7 @@ function loadRequestExecutor() {
     var scriptbase = hostweburl + "/_layouts/15/";
 
     $.getScript(scriptbase + "SP.RequestExecutor.js", getCurrentUserId);
+   
 }
  
 
@@ -135,7 +137,8 @@ function getCurrentUserId(){
 function execCrossDomainRequestTest(userId) {
     var listGuid = "'99471df6-0ae8-46c8-9fa6-7bfb3e4bfd33'";
 
-    var url = hostweburl + '/_api/Web/Lists(guid' + listGuid + ')/roleassignments/GetByPrincipalId(' + userId + ')/RoleDefinitionBindings';
+    //var url = hostweburl + '/_api/Web/Lists(guid' + listGuid + ')/roleassignments/c/RoleDefinitionBindings';
+    var url = appweburl + "/_api/SP.AppContextSite(@target)/Web/Lists(guid'99471df6-0ae8-46c8-9fa6-7bfb3e4bfd33')/roleassignments/GetByPrincipalId('" + userId + "')/RoleDefinitionBindings?@target='" + hostweburl + "'";
 
     var pause = "pause";
 
@@ -144,15 +147,19 @@ function execCrossDomainRequestTest(userId) {
     executor.executeAsync(
      {
 
-         url: hostweburl + '/_api/Web/Lists(guid' + listGuid + ')/roleassignments/GetByPrincipalId(' + userId + ')/RoleDefinitionBindings' + hostweburl + "'",
-
+         url: url,
+        
          method: "GET",
          headers: { "Accept": "application/json; odata=verbose" },
-         success: successHandler,
-         error: errorHandler
+         success: function (data) { console.log("success", data) },
+         error: function (data) { console.log("success", data) }
 
      }
 
+     
+
+
+    
     );
     console.log(listGuid);
 }
