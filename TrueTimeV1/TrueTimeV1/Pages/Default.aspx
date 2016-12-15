@@ -36,11 +36,11 @@
     <button onclick="GetSite()">Click</button>
     <div id="listResult"></div>
     <div id ="admin">
-        <h1>Du är Admin</h1>
+       
     </div>
     <br />
       <div id ="konsult">
-        <h1>Du är Admin</h1>
+       
     </div>
 
 </asp:Content>

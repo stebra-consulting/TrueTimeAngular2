@@ -35,5 +35,12 @@
     </div>
     <button onclick="GetSite()">Click</button>
     <div id="listResult"></div>
+    <div id ="admin">
+       
+    </div>
+    <br />
+      <div id ="konsult">
+       
+    </div>
 
 </asp:Content>

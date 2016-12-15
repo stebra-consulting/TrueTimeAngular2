@@ -1,51 +1,19 @@
 ﻿
 "use strict";
 
-
-//function tidApp() {
-
-
-
-//    var context = SP.ClientContext.get_current();
-//    var user = context.get_web().get_currentUser();
-//    console.log("user", user);
-
-//    context.load(user);
-//    context.executeQueryAsync(Function.createDelegate(this, onSuccess),
-//            Function.createDelegate(this, onFail));
-
-//    function onSuccess(sender, args) {
-//        alert('user title:' + user.get_title() + '\n ID:' + user.get_id());
-//        var userId = user.get_id();
-//        console.log("ID", userId);
-//    }
-//    function onFail(sender, args) {
-//        alert('failed to get list. Error:' + args.get_message());
-//    }
-
-//}
-
 var globalVarData;
 var hostweburl;   
 var appweburl;   
 
 $(document).ready(function () {  
- 
 
     ExecuteOrDelayUntilScriptLoaded(loadRequestExecutor, "sp.js");
-
-    
-   
 });  
   
 function loadRequestExecutor() {
 
-    hostweburl =
-   decodeURIComponent(
-       getQueryStringParameter("SPHostUrl"));
-    appweburl =
-        decodeURIComponent(
-            getQueryStringParameter("SPAppWebUrl"));
+    hostweburl = decodeURIComponent(getQueryStringParameter("SPHostUrl"));
+    appweburl = decodeURIComponent(getQueryStringParameter("SPAppWebUrl"));
     var scriptbase = hostweburl + "/_layouts/15/";
 
     $.getScript(scriptbase + "SP.RequestExecutor.js", getCurrentUserId);
@@ -138,7 +106,7 @@ function getCurrentUserId(){
 function execCrossDomainRequestTest(userId) {
     var listGuid = "99471df6-0ae8-46c8-9fa6-7bfb3e4bfd33";
 
-    //var url = hostweburl + '/_api/Web/Lists(guid' + listGuid + ')/roleassignments/c/RoleDefinitionBindings';
+   
     var url = appweburl + "/_api/SP.AppContextSite(@target)/Web/Lists(guid'" + listGuid + "')/roleassignments/GetByPrincipalId('" + userId + "')/RoleDefinitionBindings?@target='" + hostweburl + "'";
 
     var pause = "pause";
@@ -159,21 +127,24 @@ function execCrossDomainRequestTest(userId) {
              console.log("success", data);
              globalVarData = data;
              var jsonData = JSON.parse(globalVarData.body)
+             console.log(jsonData.d.results["0"].RoleTypeKind);
+             var roleTypeKind = jsonData.d.results["0"].RoleTypeKind
+
+             if (roleTypeKind == 5) {
+                 $("#admin").append("<h1>Du äe Admin</h1>");
+             }
+
+             else {
+                 $("#konsult").append("<h1>Du äe konsult</h1>");
+             }
          },
          error: function (data) { console.log("error", data) }
-
+        
      }
 
-     
-
-
+);
     
-    );
+
     console.log(listGuid);
 }
-    //var listGuid = '99471df6-0ae8-46c8-9fa6-7bfb3e4bfd33';
-
-    //var url = hostweburl + '/_api/Web/Lists(guid' + listguid + ')/roleassignments/GetByPrincipalId(' + userId + ')/RoleDefinitionBindings'
-    //https://sbra.sharepoint.com/sites/SD1/_api/Web/Lists(guid'99471df6-0ae8-46c8-9fa6-7bfb3e4bfd33')/roleassignments/GetByPrincipalId(12)/RoleDefinitionBindings
-
-    //https://stebra.sharepoint.com/sites/SD1/_api/Web/Lists(guid'99471df6-0ae8-46c8-9fa6-7bfb3e4bfd33')/roleassignments/GetByPrincipalId(12)/RoleDefinitionBindings
+  
