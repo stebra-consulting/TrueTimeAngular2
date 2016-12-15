@@ -33,10 +33,12 @@
         <p id="message">
         </p>
     </div>
-    <button onclick="GetSite()">Click</button>
-    <div id="listResult"></div>
+   <%-- <button onclick="GetSite()">Click</button>--%>
+    
     <div id ="admin">
-       
+
+        <a href="https://stebra.sharepoint.com/sites/SD1/_layouts/15/termstoremanager.aspx">TermStore</a>
+        
     </div>
     <br />
       <div id ="konsult">

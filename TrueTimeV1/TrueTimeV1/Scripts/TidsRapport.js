@@ -132,6 +132,10 @@ function execCrossDomainRequestTest(userId) {
 
              if (roleTypeKind == 5) {
                  $("#admin").append("<h1>Du är Admin</h1>");
+                 $("button").click(function(){
+                     $("[href]").hide();
+                 });
+                    
              }
 
              else {

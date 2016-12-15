@@ -131,11 +131,15 @@ function execCrossDomainRequestTest(userId) {
              var roleTypeKind = jsonData.d.results["0"].RoleTypeKind
 
              if (roleTypeKind == 5) {
-                 $("#admin").append("<h1>Du äe Admin</h1>");
+                 $("#admin").append("<h1>Du är Admin</h1>");
+                 $("button").click(function(){
+                     $("[href]").hide();
+                 });
+                    
              }
 
              else {
-                 $("#konsult").append("<h1>Du äe konsult</h1>");
+                 $("#konsult").append("<h1>Du är konsult</h1>");
              }
          },
          error: function (data) { console.log("error", data) }
