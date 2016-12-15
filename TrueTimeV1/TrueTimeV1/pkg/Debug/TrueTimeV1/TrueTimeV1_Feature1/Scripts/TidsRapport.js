@@ -25,6 +25,7 @@
 
 //}
 
+var globalVarData;
 var hostweburl;   
 var appweburl;   
 
@@ -143,16 +144,23 @@ function execCrossDomainRequestTest(userId) {
     var pause = "pause";
 
     var executor = new SP.RequestExecutor(appweburl);
+    
 
     executor.executeAsync(
      {
 
          url: url,
-        
+         
          method: "GET",
          headers: { "Accept": "application/json; odata=verbose" },
-         success: function (data) { console.log("success", data) },
-         error: function (data) { console.log("success", data) }
+         
+         success: function (data) {
+            
+             console.log("success", data);
+             globalVarData = data;
+             var jsonData = JSON.parse(globalVarData.body)
+         },
+         error: function (data) { console.log("error", data) }
 
      }
 
