@@ -8,8 +8,70 @@ var appweburl;
 $(document).ready(function () {  
 
     ExecuteOrDelayUntilScriptLoaded(loadRequestExecutor, "sp.js");
-});  
-  
+
+    //minTest
+    
+    var scriptbase = _spPageContextInfo.webServerRelativeUrl + "/_layouts/15/";
+    var taxnomiFilePath = scriptbase + "SP.Taxonomy.js";
+
+    console.log(taxnomiFilePath);
+    //$.getScript(scriptbase + "SP.Runtime.js",
+        
+  //  $.getScript(scriptbase + "SP.js", function(){
+            
+    $.getScript(taxnomiFilePath, execOperation);
+            
+    });
+
+    // });  
+
+
+//testar min TermStore
+
+function execOperation() {
+
+    //Current Context
+    var context = SP.ClientContext.get_current();
+
+    //Current Taxonomy Session
+    var taxSession = SP.Taxonomy.TaxonomySession.getTaxonomySession(context);
+
+    //Term Stores
+    var termStores = taxSession.get_termStores();
+
+    //Name of the Term Store from which to get the Terms.
+    var termStore = termStores.getByName("Taxonomy_Dmxzz8tIBzk8wNVKQpJ+xA==");
+
+    //GUID of Term Set from which to get the Terms.
+    var termSet = termStore.getTermSet("b49f64b3-4722-4336-9a5c-56c326b344d4");
+
+    var terms = termSet.getAllTerms();
+
+    context.load(terms);
+
+    context.executeQueryAsync(function () {
+
+        var termEnumerator = terms.getEnumerator();
+
+        var termList = "Terms: \n";
+
+        while (termEnumerator.moveNext()) {
+
+            var currentTerm = termEnumerator.get_current();
+
+            termList += currentTerm.get_name() + "\n";
+
+        }
+
+        alert(termList);
+
+    }, function (sender, args) {
+
+        console.log(args.get_message());
+
+    });
+
+}
 function loadRequestExecutor() {
 
     hostweburl = decodeURIComponent(getQueryStringParameter("SPHostUrl"));
@@ -17,7 +79,15 @@ function loadRequestExecutor() {
     var scriptbase = hostweburl + "/_layouts/15/";
 
     $.getScript(scriptbase + "SP.RequestExecutor.js", getCurrentUserId);
-   
+    var scriptbase = _spPageContextInfo.webServerRelativeUrl + "/_layouts/15/";
+    var taxnomiFilePath = scriptbase + "SP.Taxonomy.js";
+
+    console.log(taxnomiFilePath);
+    //$.getScript(scriptbase + "SP.Runtime.js",
+
+    //  $.getScript(scriptbase + "SP.js", function(){
+
+    $.getScript(taxnomiFilePath, execOperation);
 }
  
 

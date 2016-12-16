@@ -37,6 +37,8 @@
     
     <div id ="admin">
 
+</div>
+
         <a href="https://stebra.sharepoint.com/sites/SD1/_layouts/15/termstoremanager.aspx">TermStore</a>
         
     </div>
