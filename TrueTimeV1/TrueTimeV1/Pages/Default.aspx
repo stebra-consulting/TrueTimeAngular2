@@ -39,7 +39,7 @@
 
         
     <div>
-        <p id="projets">
+        <p id="projets">Projects 
             <asp:DropDownList ID="ddlProjets" runat="server" ClientIDMode="Static"></asp:DropDownList>
         </p>
     </div>

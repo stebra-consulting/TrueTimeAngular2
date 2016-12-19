@@ -7,6 +7,7 @@ var singles = [];
 var hostweburl;
 var appweburl;
 var context;
+var termsChild;
 
 ///Wait for the page to load 
 $(document).ready(function () {
@@ -91,7 +92,7 @@ function GetTaxonomy() {
 
             var currentTerm = termsEnumerator.get_current();
 
-            var termsChild = currentTerm.get_terms();
+            termsChild = currentTerm.get_terms();
 
             context.load(termsChild);
 
@@ -131,8 +132,10 @@ function GetTaxonomy() {
 // 
 function OnLoadSuccess(sender, args, taxoPair) {
 
+ 
+
     // Term's Childs 
-    if (taxoPair.Childs.get_count() === 0) {
+    if (taxoPair.Childs.get_count() === 0 && taxoPair.isActive === true) {
 
         // No Childs ! 
         var newItemTree = Object.create(null, {
