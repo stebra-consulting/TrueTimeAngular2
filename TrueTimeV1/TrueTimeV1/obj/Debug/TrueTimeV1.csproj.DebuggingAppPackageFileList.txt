@@ -1,1 +1,1 @@
-D:\Repos\TrueTimeAngular2\TrueTimeV1\TrueTimeV1\bin\Debug\TrueTimeV1.debugapp
+C:\Users\rozhna\Desktop\Repos\TrueTime\TrueTimeV1\TrueTimeV1\bin\Debug\TrueTimeV1.debugapp

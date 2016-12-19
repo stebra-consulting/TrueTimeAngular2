@@ -64,12 +64,13 @@
     </None>
     <Content Include="Scripts\Elements.xml" />
     <Content Include="Scripts\App.js" />
+    <Content Include="Scripts\GetTerms.js" />
     <Content Include="Scripts\jquery-3.1.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.1.1.js" />
     <Content Include="Scripts\jquery-3.1.1.min.js" />
     <Content Include="Scripts\jquery-3.1.1.slim.js" />
     <Content Include="Scripts\jquery-3.1.1.slim.min.js" />
-    <Content Include="Scripts\TidsRapport.js" />
+    <Content Include="Scripts\UserKind.js" />
     <Content Include="Scripts\_references.js" />
   </ItemGroup>
   <ItemGroup>

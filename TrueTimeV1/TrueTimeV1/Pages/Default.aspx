@@ -17,7 +17,9 @@
 
     <!-- Add your JavaScript to the following file -->
     
-  <script type="text/javascript" src="../Scripts/TidsRapport.js"></script>
+ 
+    <script  type="text/javascript"src="../Scripts/UserKind.js"></script>
+    <script type="text/javascript" src="../Scripts/GetTerms.js"></script>
     
 </asp:Content>
 
@@ -30,20 +32,24 @@
 <asp:Content ContentPlaceHolderID="PlaceHolderMain" runat="server">
 
     <div>
-        <p id="message">
+        <p id="message">  </p>
+      
+    </div>
+   
+
+        
+    <div>
+        <p id="projets">
+            <asp:DropDownList ID="ddlProjets" runat="server" ClientIDMode="Static"></asp:DropDownList>
         </p>
     </div>
-   <%-- <button onclick="GetSite()">Click</button>--%>
-    
+
+
     <div id ="admin">
-
-</div>
-
         <a href="https://stebra.sharepoint.com/sites/SD1/_layouts/15/termstoremanager.aspx">TermStore</a>
-        
     </div>
-    <br />
-      <div id ="konsult">
+
+    <div id ="konsult">
        
     </div>
 

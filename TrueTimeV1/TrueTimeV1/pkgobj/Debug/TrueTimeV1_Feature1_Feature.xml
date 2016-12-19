@@ -5,7 +5,7 @@
     <ElementFile Location="Pages\Default.aspx" />
     <ElementManifest Location="Scripts\Elements.xml" />
     <ElementFile Location="Scripts\App.js" />
-    <ElementFile Location="Scripts\TidsRapport.js" />
+    <ElementFile Location="Scripts\UserKind.js" />
     <ElementFile Location="Scripts\jquery-3.1.1.slim.min.map" />
     <ElementFile Location="Scripts\jquery-3.1.1.slim.min.js" />
     <ElementFile Location="Scripts\jquery-3.1.1.slim.js" />
@@ -13,6 +13,7 @@
     <ElementFile Location="Scripts\jquery-3.1.1.min.js" />
     <ElementFile Location="Scripts\jquery-3.1.1.js" />
     <ElementFile Location="Scripts\jquery-3.1.1.intellisense.js" />
+    <ElementFile Location="Scripts\GetTerms.js" />
     <ElementManifest Location="Content\Elements.xml" />
     <ElementFile Location="Content\App.css" />
     <ElementManifest Location="Images\Elements.xml" />
