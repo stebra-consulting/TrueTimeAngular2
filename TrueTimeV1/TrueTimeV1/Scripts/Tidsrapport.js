@@ -1,5 +1,4 @@
-﻿
-"use strict";
+﻿"use strict";
 
 var globalVarData;
 var hostweburl;   
@@ -8,10 +7,9 @@ var appweburl;
 $(document).ready(function () {  
 
     ExecuteOrDelayUntilScriptLoaded(loadRequestExecutor, "sp.js");
-            
-    });
-
-
+    
+    
+});
 
 function loadRequestExecutor() {
 
@@ -20,10 +18,78 @@ function loadRequestExecutor() {
     var scriptbase = hostweburl + "/_layouts/15/";
 
     $.getScript(scriptbase + "SP.RequestExecutor.js", getCurrentUserId);
-   
+    //var scriptbase = _spPageContextInfo.webServerRelativeUrl + "/_layouts/15/";
+
+    var taxnomiFilePath = scriptbase + "SP.Taxonomy.js";
+    console.log(taxnomiFilePath);
+
+    $.getScript(taxnomiFilePath, execOperation);
 
 }
 
+ 
+
+
+//testar min TermStore
+
+function execOperation() {
+
+    //Current Context
+    var context = SP.ClientContext.get_current();
+
+    //Current Taxonomy Session
+    var taxSession = SP.Taxonomy.TaxonomySession.getTaxonomySession(context);
+
+    //Term Stores
+    var termStores = taxSession.get_termStores();
+
+    //Name of the Term Store from which to get the Terms.
+    var termStore = termStores.getByName("Taxonomy_AzCU6OxivPbpEZliwX5Mag==");
+
+    //GUID of Term Set from which to get the Terms.
+    var termSet = termStore.getTermSet("768ec8e4-fdff-4b6c-8742-521a73e4d73a");
+
+    var terms = termSet.getAllTerms();
+
+    context.load(terms);
+
+    context.executeQueryAsync(function () {
+
+        var termEnumerator = terms.getEnumerator();
+
+        var termList = "Terms: \n";
+
+
+        while (termEnumerator.moveNext())
+        {
+
+            var currentTerm = termEnumerator.get_current();
+            var property2 = currentTerm.get_objectData().get_properties().CustomProperties
+            console.log(currentTerm.get_objectData().get_properties())
+            if (property2.isActive)
+            {
+                $("#drop2").append("<option>" + currentTerm.get_name() + "</option>");
+                termList += currentTerm.get_name() + "\n";
+            }
+                //termList += currentTerm.get_name() + "\n";
+                //$("#drop2").append("<option>" + currentTerm.get_name() + "</option>");
+
+               
+            
+
+        }
+
+        //alert(termList);
+
+    }, function (sender, args) {
+
+        console.log("faile",args.get_message());
+
+    });
+
+}
+
+ 
 
 function execCrossDomainRequest() {  
  
@@ -81,7 +147,7 @@ function getQueryStringParameter(paramToRetrieve) {
         document.URL.split("?")[1].split("&");     
     for (var i = 0; i < params.length; i = i + 1) {   
         var singleParam = params[i].split("=");   
-        if (singleParam[0] === paramToRetrieve)   
+        if (singleParam[0] == paramToRetrieve)   
             return singleParam[1];   
     }   
 }
@@ -134,7 +200,7 @@ function execCrossDomainRequestTest(userId) {
              console.log(jsonData.d.results["0"].RoleTypeKind);
              var roleTypeKind = jsonData.d.results["0"].RoleTypeKind
 
-             if (roleTypeKind === 5) {
+             if (roleTypeKind == 5) {
                  $("#admin").append("<h1>Du är Admin</h1>");
                  $("button").click(function(){
                      $("[href]").hide();

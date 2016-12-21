@@ -127,9 +127,7 @@ function GetTaxonomy() {
 }
 
 
-// 
-// 
-// 
+
 function OnLoadSuccess(sender, args, taxoPair) {
 
  

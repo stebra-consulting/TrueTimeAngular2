@@ -7,3 +7,6 @@ D:\Repos\TrueTimeAngular2\TrueTimeV1\TrueTimeV1\obj\Debug\TrueTimeV1.pdb
 C:\Users\rozhna\Desktop\Repos\TrueTime\TrueTimeV1\TrueTimeV1\bin\Debug\TrueTimeV1.pdb
 C:\Users\rozhna\Desktop\Repos\TrueTime\TrueTimeV1\TrueTimeV1\obj\Debug\TrueTimeV1.dll
 C:\Users\rozhna\Desktop\Repos\TrueTime\TrueTimeV1\TrueTimeV1\obj\Debug\TrueTimeV1.pdb
+C:\Users\Chro\Desktop\Repos\TrueTime\TrueTimeV1\TrueTimeV1\bin\Debug\TrueTimeV1.pdb
+C:\Users\Chro\Desktop\Repos\TrueTime\TrueTimeV1\TrueTimeV1\obj\Debug\TrueTimeV1.dll
+C:\Users\Chro\Desktop\Repos\TrueTime\TrueTimeV1\TrueTimeV1\obj\Debug\TrueTimeV1.pdb

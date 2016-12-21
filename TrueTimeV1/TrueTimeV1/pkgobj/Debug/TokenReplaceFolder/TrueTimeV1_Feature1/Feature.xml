@@ -14,6 +14,7 @@
     <ElementFile Location="Scripts\jquery-3.1.1.js" />
     <ElementFile Location="Scripts\jquery-3.1.1.intellisense.js" />
     <ElementFile Location="Scripts\GetTerms.js" />
+    <ElementFile Location="Scripts\Tidsrapport.js" />
     <ElementManifest Location="Content\Elements.xml" />
     <ElementFile Location="Content\App.css" />
     <ElementManifest Location="Images\Elements.xml" />

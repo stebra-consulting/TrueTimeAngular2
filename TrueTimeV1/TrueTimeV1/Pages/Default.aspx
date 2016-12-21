@@ -16,10 +16,10 @@
     <link rel="Stylesheet" type="text/css" href="../Content/App.css" />
 
     <!-- Add your JavaScript to the following file -->
-    
+    <script src="../Scripts/Tidsrapport.js"></script>
  
-    <script  type="text/javascript"src="../Scripts/UserKind.js"></script>
-    <script type="text/javascript" src="../Scripts/GetTerms.js"></script>
+ <%--   <script  type="text/javascript"src="../Scripts/UserKind.js"></script>
+    <script type="text/javascript" src="../Scripts/GetTerms.js"></script>--%>
     
 </asp:Content>
 
@@ -38,11 +38,15 @@
    
 
         
-    <div>
-        <p id="projets">Projects 
-            <asp:DropDownList ID="ddlProjets" runat="server" ClientIDMode="Static"></asp:DropDownList>
-        </p>
-    </div>
+    
+        <select id="drop2">
+            <option></option>
+            
+        </select>
+       <%-- <p id="projets">Projects 
+            <asp:DropDownList ID="drop2" runat="server" ClientIDMode="Static"></asp:DropDownList>
+        </p>--%>
+ 
 
 
     <div id ="admin">
